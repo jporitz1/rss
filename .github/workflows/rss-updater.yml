@@ -2,7 +2,7 @@ name: Update RSS Feeds
 
 on:
   schedule:
-    - cron: '0 * * * *' # every hour
+    - cron: '0 * * * *'  # Every hour
   workflow_dispatch:
 
 jobs:
@@ -34,9 +34,5 @@ jobs:
         git config user.email "github-actions@users.noreply.github.com"
         git add *.xml
         git commit -m "Auto–update RSS feeds" || echo "No changes to commit"
-        git push
-      env:
-        # USE YOUR PERSONAL ACCESS TOKEN HERE:
-        GIT_AUTH_TOKEN: ${{ secrets.PAT_TOKEN }}
-      # override default push URL with token-authenticated one
-      continue-on-error: false
+        git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/${{ github.repository }}
+        git push origin main
