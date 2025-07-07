@@ -23,7 +23,7 @@ jobs:
 
       - name: Run feed scripts
         run: |
-          python herald_trbine_rss.py
+          python herald_tribune_rss.py
           python mysuncoast_rss.py
           python srqmagazine_rss.py
 
